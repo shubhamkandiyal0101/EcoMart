@@ -1,0 +1,16 @@
+.cat-card:hover {
+    transform: scale(1.5);
+    overflow: auto;
+    z-index: 99;   
+    transition: 500ms;
+    img { 
+        border: dotted blue 2px;
+    }
+}
+
+.cat-card {
+    img { 
+        border: dotted 2px;
+        padding: 5px;
+    }
+}

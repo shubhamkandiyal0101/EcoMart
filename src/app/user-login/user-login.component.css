@@ -1,0 +1,49 @@
+
+/* container ensures comfortable vertical spacing on short screens */
+.login-page { padding-top: 3rem; padding-bottom: 3rem; }
+
+/* avatar wrapper & image */
+.avatar-wrapper {
+  width: 110px;
+  height: 110px;
+  z-index: 10;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.12);
+  border: 6px solid white; /* white ring between avatar and card */
+}
+
+/* actual avatar image */
+.avatar-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+/* 3D-like card shadow */
+.shadow-3d {
+  box-shadow:
+    0 6px 18px rgba(16,24,40,0.12),
+    0 2px 6px rgba(16,24,40,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  border: none;
+  border-radius: 12px;
+  overflow: visible;
+}
+
+/* ensure avatar sits above card on small screens too */
+@media (max-width: 420px) {
+  .avatar-wrapper { width: 92px; height: 92px; border: 5px solid white; }
+  .avatar-img { width: 74px; height: 74px; }
+  .login-card { max-width: 360px; }
+}
+
+/* subtle hover lift for the card (desktop) */
+@media (hover: hover) {
+  .login-card:hover { transform: translateY(-6px); transition: transform .18s cubic-bezier(.2,.8,.2,1); }
+}

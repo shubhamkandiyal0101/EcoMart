@@ -1,0 +1,9 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
+.border-none {
+    border: unset !important;
+}
+.link-type-1 {
+    color: rgb(24, 28, 230);
+    font-weight: bold;
+    cursor: pointer;
+}

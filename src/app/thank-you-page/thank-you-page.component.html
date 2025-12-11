@@ -1,0 +1,39 @@
+<div class="container py-5 d-flex justify-content-center">
+
+  <div class="card shadow-lg thankyou-card p-4 text-center" style="max-width: 550px; width: 100%;">
+
+    <!-- Success Icon -->
+    <div class="mb-3">
+      <div class="rounded-circle bg-success d-inline-flex align-items-center justify-content-center"
+           style="width: 90px; height: 90px;">
+        <i class="bi bi-check-lg text-white" style="font-size: 3rem;"></i>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h2 class="fw-bold mb-2">Thank You for Your Purchase!</h2>
+    <p class="text-muted mb-4">
+      Your order has been placed successfully.
+      A confirmation email has been sent to your inbox.
+    </p>
+
+    <!-- Order Details -->
+    <div class="alert alert-light border shadow-sm text-start">
+      <p class="mb-1"><strong>Order ID:</strong> #{{ orderId  }}</p>
+      <p class="mb-1"><strong>Total Amount:</strong> {{ totalAmt | currency:'USD'}}</p>
+      <p class="mb-0"><strong>Estimated Delivery:</strong> 3–5 business days</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mt-4 d-flex justify-content-center gap-2">
+      <!-- <a routerLink="/orders" class="btn btn-outline-primary">
+        View Order
+      </a> -->
+      <a [routerLink]="['/shop']" class="btn btn-primary">
+        Continue Shopping
+      </a>
+    </div>
+
+  </div>
+
+</div>

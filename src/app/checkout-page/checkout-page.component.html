@@ -1,0 +1,260 @@
+<div class="container py-5">
+
+  <div class="row g-4">
+
+    <!-- Left: Billing / Shipping Form -->
+    <div class="col-lg-7">
+
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+
+          <h4 class="mb-3">Billing Details</h4>
+
+          <form [formGroup]="checkoutForm" novalidate>
+
+            <div class="row">
+              <div class="col-sm-6 mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="John" formControlName="firstName"
+                [class.is-invalid]="checkoutForm.controls.firstName.errors && (isCheckoutFormSubmitted || checkoutForm.controls.firstName.touched)"
+                >
+
+                @if(checkoutForm.controls.firstName.errors && (isCheckoutFormSubmitted || checkoutForm.controls.firstName.touched)){
+                <div class="invalid-feedback">
+                  @if(checkoutForm.controls.firstName.errors['required']) {
+                    This field is required 
+                  } @else if(checkoutForm.controls.firstName.errors['pattern']) {
+                    Only [A-Z a-z] allowed
+                  } @else if(checkoutForm.controls.firstName.errors['maxlength']) {
+                    Max 20 characters are allowed
+                  }
+                </div>
+                }
+
+
+              </div>
+
+              <div class="col-sm-6 mb-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" placeholder="Doe" formControlName="lastName"
+                [class.is-invalid]="checkoutForm.controls.lastName.errors && (isCheckoutFormSubmitted || checkoutForm.controls.lastName.touched)"
+                >
+
+                @if(checkoutForm.controls.lastName.errors && (isCheckoutFormSubmitted || checkoutForm.controls.lastName.touched)){
+                <div class="invalid-feedback">
+                  @if(checkoutForm.controls.lastName.errors['required']) {
+                    This field is required 
+                  } @else if(checkoutForm.controls.lastName.errors['pattern']) {
+                    Only [A-Z a-z] allowed
+                  } @else if(checkoutForm.controls.lastName.errors['maxlength']) {
+                    Max 20 characters are allowed
+                  }
+                </div>
+                }
+
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="john@example.com"  formControlName="email"
+              [class.is-invalid]="checkoutForm.controls.email.errors && (isCheckoutFormSubmitted || checkoutForm.controls.email.touched)">
+
+              @if(checkoutForm.controls.email.errors && (isCheckoutFormSubmitted || checkoutForm.controls.email.touched)){
+                <div class="invalid-feedback">
+                  @if(checkoutForm.controls.email.errors['required']) {
+                    This field is required 
+                  } @else if(checkoutForm.controls.email.errors['pattern']) {
+                    Please enter valid E-Mail
+                  } @else if(checkoutForm.controls.email.errors['maxlength']) {
+                    Max 50 characters are allowed
+                  }
+                </div>
+              }
+
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-control" placeholder="9876543210"  formControlName="phone"
+              [class.is-invalid]="checkoutForm.controls.phone.errors && (isCheckoutFormSubmitted || checkoutForm.controls.phone.touched)">
+
+              @if(checkoutForm.controls.phone.errors && (isCheckoutFormSubmitted || checkoutForm.controls.phone.touched)){
+                <div class="invalid-feedback">
+                  @if(checkoutForm.controls.phone.errors['required']) {
+                    This field is required 
+                  } @else if(checkoutForm.controls.phone.errors['pattern']) {
+                    Please enter valid Mobile Number
+                  } @else if(checkoutForm.controls.phone.errors['maxlength']) {
+                    Max 10 characters are allowed
+                  }
+                </div>
+              }
+            </div>
+
+            <hr class="my-4">
+
+            <h5 class="mb-3">Shipping Address</h5>
+            <div formGroupName="addressInfo">
+                <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" placeholder="House no, Street" formControlName="address"
+                [class.is-invalid]="checkoutForm.controls.addressInfo.controls.address.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.address.touched)">
+
+                  @if(checkoutForm.controls.addressInfo.controls.address.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.address.touched)){
+                    <div class="invalid-feedback">
+                      @if(checkoutForm.controls.addressInfo.controls.address.errors['required']) {
+                        This field is required 
+                      } 
+                    </div>
+                  }
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">State</label>
+                    <select class="form-select"
+                    formControlName="state"
+                    [class.is-invalid]="checkoutForm.controls.addressInfo.controls.state.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.state.touched)"
+                    >
+                      @for(state of states; track state) {
+                        <option [value]="state">{{state}}</option>
+                      }
+                    </select>
+
+                    
+
+                    @if(checkoutForm.controls.addressInfo.controls.state.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.state.touched)){
+                      <div class="invalid-feedback">
+                        @if(checkoutForm.controls.addressInfo.controls.state.errors['required']) {
+                          This field is required 
+                        } 
+                      </div>
+                    }
+                      
+                    <!-- <input type="text" class="form-control" placeholder="Maharashtra"
+                    formControlName="state"
+                    > -->
+                  </div>
+                  <div class="col-md-6 mb-3">
+                      <label class="form-label">City</label>
+                      <select class="form-select"
+                      formControlName="city"
+                      [class.is-invalid]="checkoutForm.controls.addressInfo.controls.city.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.city.touched)"
+                      >
+                        @for(city of selectedStateCities; track city) {
+                          <option [value]="city">{{city}}</option>
+                        }
+                      </select>
+
+                      @if(checkoutForm.controls.addressInfo.controls.city.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.city.touched)){
+                        <div class="invalid-feedback">
+                          @if(checkoutForm.controls.addressInfo.controls.city.errors['required']) {
+                            This field is required 
+                          } 
+                        </div>
+                      }
+                    
+
+                  </div>
+
+                
+                </div>
+
+                <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" placeholder="400001"
+                    formControlName="pincode"
+                    [class.is-invalid]="checkoutForm.controls.addressInfo.controls.pincode.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.pincode.touched)"
+                    >
+
+                    @if(checkoutForm.controls.addressInfo.controls.pincode.errors && (isCheckoutFormSubmitted || checkoutForm.controls.addressInfo.controls.pincode.touched)){
+                        <div class="invalid-feedback">
+                          @if(checkoutForm.controls.addressInfo.controls.pincode.errors['required']) {
+                            This field is required 
+                          } @else if(checkoutForm.controls.addressInfo.controls.pincode.errors['pattern']) {
+                            Please enter valid Pincode
+                          } 
+                        </div>
+                      }
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Country</label>
+                    <select class="form-select"
+                    formControlName="country"
+                    >
+                    <option value="India">India</option>
+                    </select>
+                </div>
+                </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: Order Summary -->
+    <div class="col-lg-5">
+
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+
+          <h4 class="mb-3">Your Order</h4>
+
+          <!-- Cart Items List -->
+          <ul class="list-group mb-3">
+            @for(item of cartProducts; track item.productId) {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div style="width: 60px; margin-right: 10px;">
+                    <img [src]="item.images[0]" onerror="this.src = '/static/img-not-found.png'" class="img-fluid rounded" style="max-height: 60px;" alt="Product" />
+                </div>
+                <div style="width: 80%;">
+                    
+                    <strong style="margin-right: 10px;">{{item.title}}</strong>
+                    <br>
+                    <small class="text-muted">Qty: {{item.qty}}</small>
+                </div>
+                <span>{{item.qty * item.price | currency:'USD'}}</span>
+                </li>
+            }
+           
+
+          
+          </ul>
+
+          <!-- Price Summary -->
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Subtotal</span>
+              <strong>{{totalPrice  | currency:'USD'}}</strong>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Shipping</span>
+              <strong>{{0  | currency:'USD'}}</strong>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total</span>
+              <strong>{{totalPrice  | currency:'USD'}}</strong>
+            </li>
+          </ul>
+
+          <button class="btn btn-primary btn-lg w-100" (click)="placeOrder()">
+            Place Order
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

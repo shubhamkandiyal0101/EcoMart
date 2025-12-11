@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Eco<span class="text-primary">Mart</span></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMain"
+      aria-controls="navMain"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" [routerLink]="['/']">Home</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['shop']">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+
+      <form class="d-flex me-3" (submit)="$event.preventDefault()">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search products"
+          aria-label="Search"
+          name="searchInput"
+        />
+      </form>
+
+      <div class="d-flex align-items-center gap-2">
+        @if(!this.isLoggedIn()) {
+          <button class="btn btn-outline-primary"  [routerLink]="['/login']">Login</button>
+        } @else {
+          <button class="btn btn-outline-primary"  [routerLink]="['/user']">Dashboard</button>
+        }
+        <button class="btn btn-outline-secondary" [routerLink]="['/user-list']">User List</button>
+        <a [routerLink]="['/cart']">
+          <button class="btn btn-primary position-relative">
+            <i class="bi bi-cart"></i>
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              >{{totalQty}}</span
+            >
+          </button>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</nav>

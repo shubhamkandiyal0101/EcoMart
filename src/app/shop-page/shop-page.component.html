@@ -1,0 +1,19 @@
+<div class="container">
+
+    <section id="categories" class="py-5">
+
+    <div class="container">
+
+
+        <div class="row g-4">
+        @for(cat of prodCat(); track cat.id) {
+            <div class="col-12 col-sm-6 col-lg-2">
+            <app-category [cat]="cat"></app-category>
+            </div>
+        }
+        </div>
+
+    </div>
+    </section>
+    <app-product-list></app-product-list>
+</div>

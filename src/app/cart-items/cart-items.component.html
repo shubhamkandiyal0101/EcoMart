@@ -1,0 +1,72 @@
+<div class="container py-4">
+
+  <h3 class="mb-4">Your Cart</h3>
+
+  @if(cartProducts.length === 0) {
+    <div class="alert alert-info">
+        Your cart is empty.
+    </div>
+  }
+  
+@if(cartProducts.length > 0) {
+  @for(item of cartProducts; track item.productId) {
+    <div class="card mb-3 shadow-sm">
+        <div class="row g-0 align-items-center">
+
+        <!-- Product Image -->
+        <div class="col-4 col-md-2 text-center p-2">
+            <img [src]="item.images[0]" onerror="this.src = '/static/img-not-found.png'" class="img-fluid rounded" style="max-height: 90px;" alt="Product">
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-8 col-md-6 p-3">
+            <h5 class="mb-1">{{ item.title }}</h5>
+            <p class="text-muted mb-1"> {{ item.price   | currency:'USD'}}</p>
+            <p class="small text-secondary">Category: {{ item.category }}</p>
+        </div>
+
+        <!-- Quantity & Subtotal -->
+        <div class="col-6 col-md-2 text-center p-3">
+            <div class="input-group input-group-sm w-75 mx-auto">
+            <button class="btn btn-outline-secondary" (click)="decrement(item)">-</button>
+            <input type="text" class="form-control text-center" [value]="item.qty" readonly>
+            <button class="btn btn-outline-secondary" (click)="increment(item)">+</button>
+            </div>
+            <div class="mt-2 fw-semibold">
+           {{ item.qty * item.price   | currency:'USD'}}
+            </div>
+        </div>
+
+        <!-- Remove -->
+        <div class="col-6 col-md-2 text-center p-3">
+            <button class="btn btn-danger btn-sm" (click)="remove(item)">
+            <i class="bi bi-trash"></i> Remove
+            </button>
+        </div>
+
+        </div>
+    </div>
+  }
+  
+
+  <!-- Cart Summary -->
+  <div class="card p-3 mt-4 shadow-sm">
+    <h5>Order Summary</h5>
+    <hr>
+    <div class="d-flex justify-content-between">
+      <span>Total Items:</span>
+      <span>{{ totalQty }}</span>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <span>Total Price:</span>
+      <span class="fw-bold">{{ totalPrice | currency:'USD'}}</span>
+    </div>
+
+    <button class="btn btn-primary w-100 mt-3" [routerLink]="['/checkout']">Checkout</button>
+  </div>
+
+}
+
+
+</div>

@@ -1,0 +1,39 @@
+<div [id]="carousalId" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        @for(img of images; track img) {
+            
+
+            @if($index==0) {
+                <button type="button" [attr.data-bs-target]="'#'+carousalId" [attr.data-bs-slide-to]="$index" [attr.aria-label]="'Slide '+$index+1" class="active"></button>
+            } @else {
+                <button type="button" [attr.data-bs-target]="'#'+carousalId" [attr.data-bs-slide-to]="$index" [attr.aria-label]="'Slide '+$index+1"></button>
+            }
+       
+        }
+        
+    </div>
+
+
+  <div class="carousel-inner">
+    @for(img of images; track img) {
+        @if($index==0) {
+            <div class="carousel-item active">
+                <img [src]="img" onerror="this.src = '/static/img-not-found.png'" class="d-block w-100" [alt]="img">
+            </div>
+        } @else {
+            <div class="carousel-item">
+                <img [src]="img" onerror="this.src = '/static/img-not-found.png'" class="d-block w-100" [alt]="img">
+            </div>
+        }
+        
+    }
+  </div>
+  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+carousalId" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+carousalId" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

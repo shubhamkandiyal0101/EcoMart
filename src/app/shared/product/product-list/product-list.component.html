@@ -1,0 +1,16 @@
+@if(productIds()?.length == 0 || !productIds()) {
+    <div class="alert alert-info py-5" role="alert">
+        No Products are Available. Please check again later.
+    </div>
+}
+
+<div class="row g-4">
+    @for (id of productIds(); track id) {
+        <div class="col-12 col-sm-6 col-lg-3">
+            <app-product-card [product]="products().productsMap[id]"></app-product-card>
+        </div>
+    }
+</div>
+
+<!-- sentinel - observe this element -->
+<!-- <div #moreProductScrollingArea class="infinite-anchor" aria-hidden="true"></div> -->

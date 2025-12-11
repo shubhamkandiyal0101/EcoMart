@@ -1,0 +1,72 @@
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top border-bottom">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold" href="#">Eco<span class="text-primary">Mart</span></a>
+
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#userNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="userNavbar">
+
+      <!-- Left Navigation  -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >My Orders</a>
+        </li>
+      </ul>
+
+      <!-- Right User controls -->
+      <ul class="navbar-nav ms-auto align-items-center">
+
+        <!-- User Avatar -->
+        <li class="nav-item me-2">
+          <img 
+            [src]="userAvatar || 'https://via.placeholder.com/40'"
+            class="rounded-circle border"
+            style="width: 40px; height: 40px; object-fit: cover;"
+          >
+        </li>
+
+        <!-- Username -->
+        <li class="nav-item me-3">
+          <span class="navbar-text text-dark fw-semibold">
+            {{ userName || 'User' }}
+          </span>
+        </li>
+
+        <!-- Logout Button -->
+        <li class="nav-item me-3">
+          <button class="btn btn-danger" (click)="logout()">
+            Logout
+          </button>
+        </li>
+        <li class="nav-item">
+
+          <a [routerLink]="['/cart']">
+            <button class="btn btn-primary position-relative">
+              <i class="bi bi-cart"></i>
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >{{totalQty}}</span
+              >
+            </button>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

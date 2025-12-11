@@ -1,0 +1,48 @@
+<div class="container py-4">
+
+  <div class="row g-3">
+    
+    @for (u of userList(); track u.id) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+        <div class="card h-100 shadow-sm user-card">
+          
+          <!-- Avatar -->
+          <div class="text-center mt-3">
+            <img 
+              [src]="u.avatar"
+              class="rounded-circle border"
+              style="width: 90px; height: 90px; object-fit: cover;"
+              onerror="this.src = '/static/img-not-found.png'" 
+            >
+          </div>
+
+          <div class="card-body text-center">
+            <h5 class="card-title mb-1">{{ u.name }}</h5>
+
+            <p class="text-muted small mb-1">
+              <strong>Email:</strong> {{ u.email }}
+            </p>
+
+            <p class="text-muted small mb-1">
+              <strong>Password:</strong> {{ u.password }}
+            </p>
+
+            <span class="badge bg-primary text-capitalize">
+              {{ u.role }}
+            </span>
+          </div>
+
+          <!-- <div class="card-footer bg-white border-0 d-flex justify-content-center gap-2 pb-3">
+            <button class="btn btn-sm btn-outline-primary">View</button>
+            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+          </div> -->
+
+        </div>
+
+      </div>
+    }
+
+  </div>
+
+</div>

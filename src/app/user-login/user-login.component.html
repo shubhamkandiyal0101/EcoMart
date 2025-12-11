@@ -1,0 +1,105 @@
+<!-- place in your component template (e.g., login.component.html) -->
+<div class="login-page d-flex align-items-center justify-content-center min-vh-100 p-3">
+  <div
+    class="login-card card text-center position-relative shadow-3d"
+    style="max-width: 420px; width: 100%"
+  >
+    <!-- avatar -->
+    <div
+      class="avatar-wrapper position-absolute top-0 start-50 translate-middle"
+      style="transform: translate(-50%, -50%)"
+    >
+      <img
+        src="static/default-avatar-male.png"
+        alt="User avatar"
+        class="rounded-circle avatar-img"
+      />
+    </div>
+
+    <!-- card body -->
+    <div class="card-body pt-5">
+      <h4 class="card-title mb-1">Welcome back</h4>
+      <p class="text-muted small mb-3">Sign in to continue to your account</p>
+
+      <form (submit)="onSubmit($event)" novalidate [formGroup]="userLoginForm">
+        <div class="mb-3">
+          <label for="email" class="form-label visually-hidden">Email</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control form-control-lg"
+            formControlName="email"
+            placeholder="Email"
+            required
+            [class.is-invalid]="userLoginForm.controls.email.errors && (isLoginFormSubmitted || userLoginForm.controls.email.touched)"
+          />
+          @if(userLoginForm.controls.email.errors && (isLoginFormSubmitted || userLoginForm.controls.email.touched)){
+          <div class="invalid-feedback">
+            @if(userLoginForm.controls.email.errors['required']) {
+               This field is required 
+            } @else if(userLoginForm.controls.email.errors['pattern']) {
+               Please enter Valid E-Mail 
+            } @else if(userLoginForm.controls.email.errors['maxlength']) {
+               Max 50 characters are allowed
+            }
+          </div>
+          }
+
+          <!-- <app-show-validations ></app-show-validations> -->
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label visually-hidden">Password</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control form-control-lg"
+            placeholder="Password"
+            formControlName="password"
+            required
+            [class.is-invalid]="userLoginForm.controls.password.errors && (isLoginFormSubmitted || userLoginForm.controls.password.touched)"
+          />
+
+          @if(userLoginForm.controls.password.errors && (isLoginFormSubmitted || userLoginForm.controls.password.touched)){
+          <div class="invalid-feedback">
+            @if(userLoginForm.controls.password.errors['required']) {
+               This field is required 
+            } @else if(userLoginForm.controls.password.errors['maxlength']) {
+               Max 30 characters are allowed
+            }
+          </div>
+          }
+
+          <!-- <app-show-validations></app-show-validations> -->
+        </div>
+
+        <!-- <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="remember">
+            <label class="form-check-label small" for="remember">Remember me</label>
+          </div>
+          <a href="#" class="small">Forgot?</a>
+        </div> -->
+
+        <button class="btn btn-primary btn-lg w-100" type="submit">Sign in</button>
+      </form>
+
+      <div class="mt-3 small text-muted">
+        Don't have an account?
+        <span (click)="showUserList = !showUserList" class="link-type-1">Click Here</span>
+      </div>
+      @if(showUserList) {
+      <div class="small text-muted">
+        <b>Scroll down to see User list!</b>
+      </div>
+      }
+      <div class="small text-muted">
+        <b><a [routerLink]="['/']">Return to Home Page</a></b>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if(showUserList) {
+<app-user-list></app-user-list>
+}
