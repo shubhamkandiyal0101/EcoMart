@@ -1,10 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-single-product',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './single-product.component.html',
   styleUrl: './single-product.component.css',
 })
@@ -15,24 +17,16 @@ export class SingleProductComponent {
   qty = 1;
   selectedImage: string | null = null;
 
-  product = {
-    id: 1,
-    title: "Laptop Pro 15",
-    price: 45000,
-    description: "High performance laptop for developers.",
-    images: [
-      "https://via.placeholder.com/500",
-      "https://via.placeholder.com/600",
-      "https://via.placeholder.com/700"
-    ],
-    category: { id: 1, name: "Electronics" },
-    rating: 4.7
-  };
-
+  cartItems: {
+    qty: number,
+    productId: number
+  }[] = []
 
   constructor(
     private productService:ProductService,
-    private activateRoute:ActivatedRoute
+    private activateRoute:ActivatedRoute,
+    private router:Router,
+    private hotToastService: HotToastService
   ) {}
 
   ngOnInit() {
@@ -51,13 +45,53 @@ export class SingleProductComponent {
     if (this.qty > 1) this.qty--;
   }
 
-  addToCart(product: any) {
-    console.log('Added to cart:', product, 'Qty:', this.qty);
+  addToCart(itemQtyParam:string) {
+    // console.log('Added to cart:', product, 'Qty:', this.qty);
+    
+    const itemQty = parseInt(itemQtyParam)
+
+    if(itemQty > 5) {
+      this.hotToastService.error('Max 5 Quantities allowed for per item');
+      return;
+    }
+
+      // get cart items from localstorage
+    let cartItemsStr = localStorage.getItem('cartItems')
+    if(cartItemsStr?.length) {
+      const cartItems = JSON.parse(cartItemsStr)
+      if(cartItems?.length > 0) {
+        this.cartItems = cartItems; 
+      }
+    }
+    // ends here ~ get cart items from localstorage
+
+    const itemIndex = this.cartItems.findIndex(cartItem=>cartItem.productId == this.productInfo().id);
+
+    if(itemIndex == -1) {
+      const { id, ...productDetails } = this.productInfo();
+      this.cartItems.push({
+        qty:itemQty,
+        productId: this.productInfo()['id'],
+        ...productDetails
+      })
+    }  else {
+      
+      this.cartItems[itemIndex]['qty'] = itemQty;
+    }
+
+    localStorage.setItem('cartItems',JSON.stringify(this.cartItems))
+
+    
   }
 
   getProductInfo() {
-    this.productService.getSingleProduct(this.productUrl()).subscribe((response)=>{
-      this.productInfo.set(response);
+    this.productService.getSingleProduct(this.productUrl()).subscribe({
+      next:(response)=>{
+        this.productInfo.set(response);
+      },
+      error:(err)=>{
+        this.router.navigate(['/shop'])
+      }
     })
   }
 

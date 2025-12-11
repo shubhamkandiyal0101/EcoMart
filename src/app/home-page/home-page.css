@@ -1,3 +1,10 @@
 .load-more-product-btn:hover:before {
   content:"Click Here to ";
 }
+
+@media(max-width: 720px) {
+  .header-hero-img {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+}

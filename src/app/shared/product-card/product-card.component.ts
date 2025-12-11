@@ -3,6 +3,7 @@ import { ProductModel } from '../../models/product-model';
 import { ImgCarouselComponent } from "../img-carousel/img-carousel.component";
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from "@angular/router";
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-product-card',
@@ -17,7 +18,9 @@ export class ProductCardComponent {
   }[] = []
   @Input({required:true}) product!: any; 
 
-  constructor() {
+  constructor(
+    private hotToastService: HotToastService
+  ) {
     console.log(this.product)
   }
 
@@ -44,7 +47,7 @@ export class ProductCardComponent {
       })
     }  else {
       if(this.cartItems[itemIndex]['qty'] >= 5) {
-        alert('Max 5 Quantities allowed for per item')
+        this.hotToastService.error('Max 5 Quantities allowed for per item');
         return;
       }
       this.cartItems[itemIndex]['qty'] += 1;

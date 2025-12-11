@@ -11,7 +11,7 @@
             onerror="this.src = 'static/img-not-found.png'"
             class="img-fluid rounded shadow-sm mb-3"
             style="max-height: 400px; object-fit: contain;"
-            alt="{{ product.title }}">
+            alt="{{ productInfo().title }}">
 
         <!-- Thumbnail Gallery -->
         <div class="d-flex justify-content-center gap-2">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-2 mb-3">
-            <div class="h4 text-success fw-bold">₹ {{ productInfo().price }}</div>
+            <div class="h4 text-success fw-bold">{{ productInfo().price | currency:'USD' }}</div>
             <!-- <span class="badge bg-warning text-dark">
             ⭐ {{ product.rating || 4.5 }}
             </span> -->
@@ -53,13 +53,13 @@
 
             <div class="input-group input-group-sm" style="max-width: 120px;">
             <button class="btn btn-outline-secondary" (click)="decrementQty()">-</button>
-            <input type="text" class="form-control text-center" [value]="qty" readonly>
+            <input type="number" class="form-control text-center" [value]="qty" readonly #itemQtyElem>
             <button class="btn btn-outline-secondary" (click)="incrementQty()">+</button>
             </div>
         </div>
 
         <!-- Add to Cart -->
-        <button class="btn btn-primary btn-lg px-4" (click)="addToCart(productInfo())">
+        <button class="btn btn-primary btn-lg px-4" (click)="addToCart(itemQtyElem.value)">
             <i class="bi bi-cart-plus"></i> Add to Cart
         </button>
 

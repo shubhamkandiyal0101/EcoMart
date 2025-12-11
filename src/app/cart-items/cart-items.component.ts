@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-cart-items',
@@ -13,7 +14,7 @@ export class CartItemsComponent {
 
   cartProducts:any = [];
 
-  constructor() {
+  constructor(private hotToastService: HotToastService) {
     // localStorage.getItem('cartItems')
     this.getCartItems();
   }
@@ -40,7 +41,7 @@ export class CartItemsComponent {
 
   increment(item: any) {
     if(item.qty >= 5 ) {
-      alert("Max 5 Items Allowed");
+      this.hotToastService.error('Max 5 Quantities allowed for per item');
       return;
     }
     item.qty++;
