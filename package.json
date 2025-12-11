@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "buildProd": "ng build -c production --base-href=\"/EcoMart/\""
+    "buildProd": "ng build -c production --base-href=\"/EcoMart/\" --deploy-url=\"/EcoMart/\""
   },
   "prettier": {
     "printWidth": 100,
