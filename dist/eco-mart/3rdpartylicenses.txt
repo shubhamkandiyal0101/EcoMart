@@ -327,6 +327,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 --------------------------------------------------------------------------------
+Package: @ngneat/overview
+License: "MIT"
+
+
+--------------------------------------------------------------------------------
+Package: @ngxpert/hot-toast
+License: "MIT"
+
+
+--------------------------------------------------------------------------------
 Package: @angular/forms
 License: "MIT"
 
@@ -351,16 +361,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
---------------------------------------------------------------------------------
-Package: @ngneat/overview
-License: "MIT"
-
-
---------------------------------------------------------------------------------
-Package: @ngxpert/hot-toast
-License: "MIT"
-
 
 --------------------------------------------------------------------------------
 Package: zone.js
