@@ -9,23 +9,6 @@ import { UserService } from '../services/user.service';
 })
 export class UserListComponent {
 
-  users = [
-    {
-      "email": "john@mail.com",
-      "password": "changeme",
-      "name": "Jhon",
-      "role": "customer",
-      "avatar": "https://i.imgur.com/LDOO4Qs.jpg"
-    },
-    {
-      "email": "alice@mail.com",
-      "password": "changeme",
-      "name": "Alice",
-      "role": "admin",
-      "avatar": "https://i.imgur.com/3GvwNBf.jpeg"
-    }
-
-  ];
 
   userList = computed<any>(()=>this.userService.userListData);
   

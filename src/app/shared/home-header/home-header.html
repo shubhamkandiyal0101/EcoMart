@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="#">Eco<span class="text-primary">Mart</span></a>
+    <a class="navbar-brand fw-bold" [routerLink]="['/']">Eco<span class="text-primary">Mart</span></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -17,11 +17,11 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link active" [routerLink]="['/']">Home</a></li>
         <li class="nav-item"><a class="nav-link" [routerLink]="['shop']">Shop</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#">About</a></li> -->
+        <!-- <li class="nav-item"><a class="nav-link" href="#">Contact</a></li> -->
       </ul>
 
-      <form class="d-flex me-3" (submit)="$event.preventDefault()">
+      <!-- <form class="d-flex me-3" (submit)="$event.preventDefault()">
         <input
           class="form-control me-2"
           type="search"
@@ -29,7 +29,7 @@
           aria-label="Search"
           name="searchInput"
         />
-      </form>
+      </form> -->
 
       <div class="d-flex align-items-center gap-2">
         @if(!this.isLoggedIn()) {

@@ -11,6 +11,8 @@ export class ProfileComponent implements OnInit {
   
   constructor(private authUserService: AuthUsersService) {}
 
+  userInfo: any = {};
+
   ngOnInit() {
     this.fetchUserProfile();
   }
@@ -18,7 +20,7 @@ export class ProfileComponent implements OnInit {
   fetchUserProfile() {
     this.authUserService.getUserProfile().subscribe({
      next:(data)=>{
-      console.log(data)
+      this.userInfo = data;
      } 
     })
   }

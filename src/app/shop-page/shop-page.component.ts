@@ -42,7 +42,6 @@ export class ShopPageComponent implements OnInit {
     // ends here ~ set product categories
 
     this.activatedRoute.params.subscribe((data:any)=>{
-      console.log(" >> data >> ", data)
       this.categorySlug.set(data['category']);
       const selCatInfo = this.prodCat().find((cat)=>cat.slug==this.categorySlug());
       
